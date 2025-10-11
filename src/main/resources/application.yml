@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ibm-tts-demo
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  # Banco de dados (descomente quando for implementar o histórico)
+  # datasource:
+  #   url: ${DB_URL:jdbc:postgresql://localhost:5432/ttsdb}
+  #   username: ${DB_USER:postgres}
+  #   password: ${DB_PASS:postgres}
+  #   driver-class-name: org.postgresql.Driver
+  # jpa:
+  #   hibernate:
+  #     ddl-auto: validate       # ou update enquanto estiver em dev
+  #   properties:
+  #     hibernate:
+  #       dialect: org.hibernate.dialect.PostgreSQLDialect
+  # flyway:
+  #   enabled: false
