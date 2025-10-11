@@ -5,6 +5,8 @@ import io.github.zeguicosta.tts.dto.SynthesizeRequest;
 import io.github.zeguicosta.tts.service.TTSService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +30,7 @@ public class TTSController {
     }
 
     @GetMapping("/history")
-    public ResponseEntity<List<TTSRequest>> getHistory() {
-        List<TTSRequest> history = ttsService.getHistory();
-        return ResponseEntity.ok(history);
+    public ResponseEntity<Page<TTSRequest>> getHistory(Pageable pageable) {
+        return ResponseEntity.ok(ttsService.getHistory(pageable));
     }
 }

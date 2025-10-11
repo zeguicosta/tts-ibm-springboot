@@ -5,6 +5,8 @@ import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import io.github.zeguicosta.tts.domain.TTSRequest;
 import io.github.zeguicosta.tts.repository.TTSRequestRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +38,8 @@ public class TTSService {
         }
     }
 
-    public List<TTSRequest> getHistory() {
+    public Page<TTSRequest> getHistory(Pageable pageable) {
         // Busca todas as requisições, ordenando da mais recente pra mais antiga
-        return repository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+        return repository.findAll(pageable);
     }
 }
