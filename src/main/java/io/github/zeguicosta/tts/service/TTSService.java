@@ -4,17 +4,17 @@ import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import io.github.zeguicosta.tts.domain.TTSRequest;
 import io.github.zeguicosta.tts.repository.TTSRequestRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
+@RequiredArgsConstructor
 public class TTSService {
     private final TextToSpeech tts;
     private final TTSRequestRepository repository;
-
-    public TTSService(TextToSpeech tts, TTSRequestRepository repository) {
-        this.tts = tts;
-        this.repository = repository;
-    }
 
     public byte[] synthesizeMp3(String text) {
         long start = System.currentTimeMillis();
@@ -34,5 +34,10 @@ public class TTSService {
             repository.save(new TTSRequest(text, "ERROR", System.currentTimeMillis() - start, voice, format));
             throw new RuntimeException("Falha ao sintetizar áudio: " + e.getMessage(), e);
         }
+    }
+
+    public List<TTSRequest> getHistory() {
+        // Busca todas as requisições, ordenando da mais recente pra mais antiga
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 }
