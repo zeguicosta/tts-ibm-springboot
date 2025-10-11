@@ -20,9 +20,9 @@ import java.util.List;
 public class TTSController {
     private final TTSService ttsService;
 
-    @PostMapping(value = "/synthesize", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/synthesize", consumes = MediaType.APPLICATION_JSON_VALUE, produces = "audio/mpeg")
     public ResponseEntity<byte[]> synthesize(@Valid @RequestBody SynthesizeRequest request) {
-        byte[] audio = ttsService.synthesizeMp3(request.text());
+        byte[] audio = ttsService.synthesizeMp3(request.text(), request.voice());
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"output.mp3\"")
                 .contentType(MediaType.parseMediaType("audio/mpeg"))

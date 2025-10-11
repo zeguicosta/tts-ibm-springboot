@@ -4,5 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 
 public record SynthesizeRequest(
         @NotBlank(message = "O campo 'text' é obrigatório.")
-        String text
+        String text,
+        String voice
 ) {}

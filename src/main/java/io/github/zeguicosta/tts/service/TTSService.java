@@ -7,10 +7,7 @@ import io.github.zeguicosta.tts.repository.TTSRequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +15,9 @@ public class TTSService {
     private final TextToSpeech tts;
     private final TTSRequestRepository repository;
 
-    public byte[] synthesizeMp3(String text) {
+    public byte[] synthesizeMp3(String text, String newVoice) {
         long start = System.currentTimeMillis();
-        String voice = SynthesizeOptions.Voice.PT_BR_ISABELAV3VOICE;
+        String voice = (newVoice == null || newVoice.isBlank()) ? SynthesizeOptions.Voice.PT_BR_ISABELAV3VOICE : newVoice;
         String format = "audio/mp3";
 
         try (var in = tts.synthesize(new SynthesizeOptions.Builder()
