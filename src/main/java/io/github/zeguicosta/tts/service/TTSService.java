@@ -36,7 +36,6 @@ public class TTSService {
     }
 
     public Page<TTSRequest> getHistory(Pageable pageable) {
-        // Busca todas as requisições, ordenando da mais recente pra mais antiga
         return repository.findAll(pageable);
     }
 }
