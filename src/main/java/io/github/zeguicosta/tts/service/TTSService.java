@@ -2,7 +2,7 @@ package io.github.zeguicosta.tts.service;
 
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
-import io.github.zeguicosta.tts.domain.TTSRequest;
+import io.github.zeguicosta.tts.model.TTSRequest;
 import io.github.zeguicosta.tts.repository.TTSRequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package io.github.zeguicosta.tts.domain;
+package io.github.zeguicosta.tts.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
