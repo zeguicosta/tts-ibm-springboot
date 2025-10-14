@@ -82,3 +82,15 @@ http://localhost:8080/api/v1/tts/history?sort=createdAt,desc&page=0&size=5
 > Observação: o projeto inclui **tratamento global de erros** — respostas de validação e falhas internas vêm padronizadas em JSON.
 
 ---
+
+## Demonstração
+
+### 1. Tela de Síntese de Áudio
+
+![Tela de Síntese de audio](./assets/screenshot_gerar_audio.png)
+
+### 2. Tela de Histórico de Requisições
+
+![Tela de Historico](./assets/screenshot_historico.png)
+
+---
