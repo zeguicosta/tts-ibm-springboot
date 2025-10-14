@@ -2,6 +2,7 @@ package io.github.zeguicosta.tts.service;
 
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
+import io.github.zeguicosta.tts.exception.SynthesisException;
 import io.github.zeguicosta.tts.model.TTSRequest;
 import io.github.zeguicosta.tts.repository.TTSRequestRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class TTSService {
             return bytes;
         } catch (Exception e) {
             repository.save(new TTSRequest(text, "ERROR", System.currentTimeMillis() - start, voice, format));
-            throw new RuntimeException("Falha ao sintetizar áudio: " + e.getMessage(), e);
+            throw new SynthesisException("Falha ao sintetizar áudio.", e);
         }
     }
 
